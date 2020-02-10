@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Check.cs" />
     <Compile Include="Model\CrmContext.cs" />
@@ -58,7 +59,10 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Sell.cs" />
     <Compile Include="Model\Seller.cs" />
+    <Compile Include="SQLCustomerRepository.cs" />
+    <Compile Include="SQLProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLSellerRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

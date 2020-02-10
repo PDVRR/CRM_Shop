@@ -68,6 +68,12 @@
     <Compile Include="ProductForm.Designer.cs">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReflectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReflectionForm.Designer.cs">
+      <DependentUpon>ReflectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SellerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReflectionForm.resx">
+      <DependentUpon>ReflectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SellerForm.resx">
       <DependentUpon>SellerForm.cs</DependentUpon>

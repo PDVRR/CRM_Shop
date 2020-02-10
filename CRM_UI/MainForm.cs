@@ -14,7 +14,7 @@ namespace CRM_UI
             db = new CrmContext();
         }
 
-        private void CheckToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CheckTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var checkCatalog = new Catalog<Check>(db.Checks);
             checkCatalog.Show();
@@ -48,10 +48,10 @@ namespace CRM_UI
 
         private void AddProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new ProductForm();
+            var form = new ReflectionForm<Product>(new Product());
             if (form.ShowDialog() != DialogResult.OK) return;
-            db.Products.Add(form.Product);
-            db.SaveChanges();
+            //db.Products.Add(form.item);
+           // db.SaveChanges();
         }
 
         private void AddSellerToolStripMenuItem1_Click(object sender, EventArgs e)

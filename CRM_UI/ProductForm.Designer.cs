@@ -90,6 +90,11 @@
             this.productPriceNUD.Name = "productPriceNUD";
             this.productPriceNUD.Size = new System.Drawing.Size(143, 20);
             this.productPriceNUD.TabIndex = 7;
+            this.productPriceNUD.Value = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
             // 
             // productCountNUD
             // 
@@ -98,7 +103,7 @@
             this.productCountNUD.Size = new System.Drawing.Size(143, 20);
             this.productCountNUD.TabIndex = 8;
             // 
-            // AddProductForm
+            // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,7 +115,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.productNameTextbox);
-            this.Name = "AddProductForm";
+            this.Name = "ProductForm";
             this.Text = "AddProductForm";
             ((System.ComponentModel.ISupportInitialize)(this.productPriceNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productCountNUD)).EndInit();
