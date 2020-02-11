@@ -40,26 +40,20 @@ namespace CRM_UI
 
         private void AddCustomerToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            var form = new CustomerForm();
+            var form = new ReflectionForm<Customer>(new Customer());
             if (form.ShowDialog() != DialogResult.OK) return;
-            db.Customers.Add(form.Customer);
-            db.SaveChanges();
         }
 
         private void AddProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new ReflectionForm<Product>(new Product());
             if (form.ShowDialog() != DialogResult.OK) return;
-            //db.Products.Add(form.item);
-           // db.SaveChanges();
         }
 
         private void AddSellerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var form = new SellerForm();
+            var form = new ReflectionForm<Seller>(new Seller());
             if (form.ShowDialog() != DialogResult.OK) return;
-            db.Sellers.Add(form.Seller);
-            db.SaveChanges();
         }
     }
 }
