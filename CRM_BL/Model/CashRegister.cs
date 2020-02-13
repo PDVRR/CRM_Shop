@@ -8,6 +8,7 @@ namespace CRM_BL.Model
 {
     public class CashRegister
     {
+        CrmContext db = new CrmContext();
         public int Number { get; set; }
         public Seller Seller { get; set; }
         public Queue<Cart> Queue { get; set; }
@@ -15,8 +16,7 @@ namespace CRM_BL.Model
         public int GoneCustomer { get; set; }
         public bool IsModel { get; set; }
         public int Count => Queue.Count;
-
-        CrmContext db = new CrmContext();
+        public event EventHandler<Check> CheckClosed;
 
         public CashRegister(int number, Seller seller)
         {
@@ -24,7 +24,7 @@ namespace CRM_BL.Model
             Seller = seller;
             Queue = new Queue<Cart>();
             IsModel = true;
-
+            MaxQueueLength = 989;
         }
 
         public void Enqueue(Cart cart)
@@ -97,13 +97,22 @@ namespace CRM_BL.Model
                     }
                 }
 
+                check.Price = sum;
+
                 if (!IsModel)
                 {
                     db.SaveChanges();
                 }
+
+                CheckClosed?.Invoke(this, check);
             }
 
             return sum;
+        }
+
+        public override string ToString()
+        {
+            return $"Cashbox №" + Number;
         }
     }
 }

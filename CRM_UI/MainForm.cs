@@ -55,5 +55,11 @@ namespace CRM_UI
             var form = new ReflectionForm<Seller>(new Seller());
             if (form.ShowDialog() != DialogResult.OK) return;
         }
+
+        private void modToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new ModelForm();
+            form.Show();
+        }
     }
 }
