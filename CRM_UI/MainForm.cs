@@ -98,7 +98,18 @@ namespace CRM_UI
 
                 loginLabel.Text = $"Welcome, {customer.Name}.";
                 loginButton.Text = "Log Out";
+                loginButton.Click += logoutButton_Click;
+                loginButton.Click -= loginButton_Click;
             }
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            loginLabel.Text = "You are not logged in!";
+            customer = null;
+            loginButton.Text = "Log In";
+            loginButton.Click += loginButton_Click;
+            loginButton.Click -= logoutButton_Click;
         }
 
         private void payButton_Click(object sender, EventArgs e)
