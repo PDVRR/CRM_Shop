@@ -8,7 +8,7 @@ namespace CRM_BL.Model
 {
     public class CashRegister
     {
-        CrmContext db = new CrmContext();
+        CrmContext db;
         public int Number { get; set; }
         public Seller Seller { get; set; }
         public Queue<Cart> Queue { get; set; }
@@ -18,18 +18,19 @@ namespace CRM_BL.Model
         public int Count => Queue.Count;
         public event EventHandler<Check> CheckClosed;
 
-        public CashRegister(int number, Seller seller)
+        public CashRegister(int number, Seller seller, CrmContext db)
         {
             Number = number;
             Seller = seller;
             Queue = new Queue<Cart>();
             IsModel = true;
-            MaxQueueLength = 989;
+            MaxQueueLength = 10;
+            this.db = db ?? new CrmContext();
         }
 
         public void Enqueue(Cart cart)
         {
-            if (Queue.Count <= MaxQueueLength)
+            if (Queue.Count < MaxQueueLength)
             {
                 Queue.Enqueue(cart);
             }

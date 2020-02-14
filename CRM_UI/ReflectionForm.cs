@@ -11,7 +11,7 @@ using CRM_BL.Model;
 
 namespace CRM_UI
 {
-    public partial class ReflectionForm<T> : Form where T : class
+    public partial class ReflectionForm<T> : Form where T : class, new()
     {
         private T item;
         private Type type;
@@ -21,7 +21,7 @@ namespace CRM_UI
 
         public ReflectionForm(T item)
         {
-            this.item = item;
+            this.item = item ?? new T();
             type = item.GetType();
             propertyInfos = type.GetProperties();
             InitializeComponent();
@@ -58,7 +58,9 @@ namespace CRM_UI
                             {
                                 Location = new Point(x + 50, y - 2),
                                 Value = Convert.ToDecimal(propertyInfo.GetValue(item)),
-                                Name = propertyInfo.Name
+                                Name = propertyInfo.Name,
+                                Minimum = 0,
+                                Maximum = 100000000000
                             };
                             this.Controls.Add(numericUpDown);
                             break;
@@ -83,7 +85,9 @@ namespace CRM_UI
                             {
                                 Location = new Point(x + 50, y - 2),
                                 DecimalPlaces = 2,
-                                Value = Convert.ToDecimal(propertyInfo.GetValue(item))
+                                Value = Convert.ToDecimal(propertyInfo.GetValue(item)),
+                                Minimum = 0,
+                                Maximum = 100000000000
                             };
                             this.Controls.Add(decimalNumericUpDown);
                             break;

@@ -22,7 +22,7 @@ namespace CRM_BL.Model
         public ShopComputerModel()
         {
             var sellers = generator.GetNewSellers(15);
-            generator.GetNewProducts(1000);
+            generator.GetNewProducts(100);
             generator.GetNewCustomers(100);
 
             foreach (var seller in sellers)
@@ -32,16 +32,16 @@ namespace CRM_BL.Model
 
             for (int i = 0; i < 3; i++)
             {
-                CashRegisters.Add(new CashRegister(CashRegisters.Count, Sellers.Dequeue()));
+                CashRegisters.Add(new CashRegister(CashRegisters.Count, Sellers.Dequeue(), null));
             }
         }
 
         public void Start()
         {
             isWorking = true;
-            Task.Run(() => CreateCarts(50, CustomerSpeed));
+            Task.Run(() => CreateCarts(10));
 
-            var cashRegisterTasks = CashRegisters.Select(c => new Task(() => CashRegisterHandling(c, CashRegisterSpeed)));
+            var cashRegisterTasks = CashRegisters.Select(c => new Task(() => CashRegisterHandling(c)));
             foreach (var task in cashRegisterTasks)
             {
                 task.Start();
@@ -53,7 +53,7 @@ namespace CRM_BL.Model
             isWorking = false;
         }
 
-        private void CashRegisterHandling(CashRegister cashRegister, int sleepTime)
+        private void CashRegisterHandling(CashRegister cashRegister)
         {
             while (isWorking)
             {
@@ -61,11 +61,11 @@ namespace CRM_BL.Model
                 {
                     cashRegister.Dequeue();
                 }
-                Thread.Sleep(sleepTime);
+                Thread.Sleep(CashRegisterSpeed);
             }
         }
 
-        private void CreateCarts(int customerCounts, int sleepTime)
+        private void CreateCarts(int customerCounts)
         {
             while (isWorking)
             {
@@ -86,7 +86,7 @@ namespace CRM_BL.Model
                     cashRegister.Enqueue(cart);
                 }
 
-                Thread.Sleep(sleepTime);
+                Thread.Sleep(CustomerSpeed);
             }
         }
     }

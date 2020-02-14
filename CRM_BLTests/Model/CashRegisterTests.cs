@@ -59,7 +59,7 @@ namespace CRM_BL.Model.Tests
             cart2.Add(product2);
             cart2.Add(product3);
 
-            var cashRegister = new CashRegister(1, seller)
+            var cashRegister = new CashRegister(1, seller, null)
             {
                 MaxQueueLength = 3
             };

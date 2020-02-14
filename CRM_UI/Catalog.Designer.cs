@@ -59,6 +59,7 @@
             this.addButton.TabIndex = 1;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // editButton
             // 
@@ -78,7 +79,7 @@
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // Catalog
             // 
@@ -91,6 +92,7 @@
             this.Controls.Add(this.catalogDGV);
             this.Name = "Catalog";
             this.Text = "Catalog";
+            this.Load += new System.EventHandler(this.Catalog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.catalogDGV)).EndInit();
             this.ResumeLayout(false);
 

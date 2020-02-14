@@ -13,7 +13,7 @@ namespace CRM_BL.Model
 
         public override string ToString()
         {
-            return Name;
+            return $"{Name} - {Price}";
         }
     }
 }

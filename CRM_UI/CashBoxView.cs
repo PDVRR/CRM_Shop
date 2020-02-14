@@ -37,7 +37,7 @@ namespace CRM_UI
             QueueLength.TabIndex = number;
             QueueLength.Value = 0;
             QueueLength.Minimum = 0;
-            QueueLength.Maximum = 1000;
+            QueueLength.Maximum = 10;
 
             LeaveCustomersCount.AutoSize = true;
             LeaveCustomersCount.Location = new System.Drawing.Point(x + 400, y);
@@ -51,7 +51,7 @@ namespace CRM_UI
 
         private void CashRegister_CheckClosed(object sender, Check e)
         {
-            Price.Invoke((Action) delegate
+            Price?.Invoke((Action) delegate
             {
                 Price.Value += e.Price;
                 QueueLength.Value = cashRegister.Count;

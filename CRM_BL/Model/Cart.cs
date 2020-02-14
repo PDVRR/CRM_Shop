@@ -10,6 +10,7 @@ namespace CRM_BL.Model
         public Customer Customer { get; set; }
         public Dictionary<Product, int> Products { get; set; }
         public int Count { get; private set; }
+        public decimal Price { get; private set; }
 
         public Cart(Customer customer)
         {
@@ -29,6 +30,7 @@ namespace CRM_BL.Model
             }
 
             Count++;
+            Price += product.Price;
         }
 
         public List<Product> GetAll()

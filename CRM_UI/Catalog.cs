@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Windows.Forms;
 using CRM_BL.Model;
@@ -9,7 +10,7 @@ using CRM_BL;
 
 namespace CRM_UI
 {
-    public partial class Catalog<T> : Form where T : class
+    public partial class Catalog<T> : Form where T : class, new()
     {
         private DbSet<T> set;
         public Catalog(DbSet<T> set)
@@ -27,7 +28,7 @@ namespace CRM_UI
             productCatalog.Show();
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             int id = (int)catalogDGV.SelectedRows[0].Cells[0].Value;
             if (typeof(T) == typeof(Product))
@@ -45,6 +46,21 @@ namespace CRM_UI
 
             catalogDGV.Update();
             catalogDGV.Refresh();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            var form = new ReflectionForm<T>(new T());
+            if (form.ShowDialog() != DialogResult.OK) return;
+        }
+
+        private void Catalog_Load(object sender, EventArgs e)
+        {
+            if (typeof(T) == typeof(Check))
+            {
+                addButton.Enabled = false;
+                editButton.Enabled = false;
+            }
         }
     }
 }
